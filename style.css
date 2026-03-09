@@ -621,6 +621,12 @@ button {
     grid-column: auto;
   }
 
+  .mass-card:last-child {
+    grid-column: auto;
+    max-width: none;
+    justify-self: stretch;
+  }
+
   .leader-card:last-child {
     grid-column: auto;
     max-width: none;
