@@ -9,43 +9,51 @@
             "content": "",
             "embeds": [
               {
-                "title": "⛪ Raider Catholic Preferred Mass",
-                "description": "Raider Catholic's **preferred Mass** is the **11:30 AM Sunday Mass at Old St. Mary**.",
-                "color": 13504577,
+                "title": "🌐 Raider Catholic Website is Live!",
+                "description": "We are excited to announce the launch of the new **Raider Catholic website**! The site is a central place where you can learn about our community, find Mass times, and connect with us.",
+                "color": 11274022,
                 "footer": {
                   "text": "MSOE Raider Catholic"
+                },
+                "image": {
+                  "url": "https://raidercatholic.com/assets/social-preview.png"
                 },
                 "thumbnail": {
                   "url": "https://raidercatholic.com/assets/logo.png"
                 },
                 "fields": [
                   {
-                    "name": "📍 Where",
-                    "value": "Old St. Mary Parish",
-                    "inline": true
-                  },
-                  {
-                    "name": "🕰 Time",
-                    "value": "Sunday - 11:30 AM",
-                    "inline": true
-                  },
-                  {
-                    "name": "🤝 Why This Mass?",
-                    "value": "Many Raider Catholic members attend this Mass together because it fits perfectly before our **1:00 PM meetings**. It allows everyone to go to Mass together and then head to the meeting right after.",
+                    "name": "🔗 Visit the Website",
+                    "value": "https://raidercatholic.com",
                     "inline": false
                   },
                   {
-                    "name": "🚶 Join Us",
-                    "value": "If you would like to attend Mass with other Raider Catholic members, feel free to join us at this time!",
+                    "name": "📅 What You Can Find",
+                    "value": "• Nearby Mass schedules\n• Information about Raider Catholic\n• Links to our Discord and Instagram\n• Leadership team information",
+                    "inline": false
+                  },
+                  {
+                    "name": "🙏 Our Mission",
+                    "value": "Raider Catholic exists to help students at MSOE grow in **faith, fellowship, and service**.",
                     "inline": false
                   }
                 ]
               }
-            ]
-          }
+            ],
+            "attachments": [],
+            "webhook_id": "1480404418762379304",
+            "flags": 0,
+            "components": []
+          },
+          "reference": "https://discord.com/channels/1202106223411863633/1202111294166286346/1480405862467240177"
         }
       ],
-      "targets": []
+      "targets": [
+        {
+          "type": 1,
+          "url": "https://discord.com/api/webhooks/1480404418762379304/Rb-KdwBAGXzUz3hqvNlZ2tg6zBHhjguumu1V9pZJzKrUM4PbSqy58zoXh60J0JnLP8pQ"
+        }
+      ]
     }
   ]
 }
