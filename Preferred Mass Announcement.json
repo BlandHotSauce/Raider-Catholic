@@ -1,0 +1,57 @@
+{
+  "version": 8,
+  "backups": [
+    {
+      "name": "Preferred Mass Announcement",
+      "messages": [
+        {
+          "_id": "Jwt34FKLrU",
+          "data": {
+            "content": "",
+            "embeds": [
+              {
+                "title": "⛪ Raider Catholic Preferred Mass",
+                "description": "Raider Catholic's **preferred Mass** is the **11:30 AM Sunday Mass at Old St. Mary**.",
+                "color": 11404848,
+                "footer": {
+                  "text": "MSOE Raider Catholic"
+                },
+                "thumbnail": {
+                  "url": "https://raidercatholic.com/assets/logo.png"
+                },
+                "fields": [
+                  {
+                    "name": "📍 Where",
+                    "value": "Old St. Mary Parish",
+                    "inline": true
+                  },
+                  {
+                    "name": "🕰 Time",
+                    "value": "Sunday - 11:30 AM",
+                    "inline": true
+                  },
+                  {
+                    "name": "🤝 Why This Mass?",
+                    "value": "Many Raider Catholic members attend this Mass together because it fits perfectly before our **1:00 PM meetings**. It allows everyone to go to Mass together and then head to the meeting right after.",
+                    "inline": false
+                  },
+                  {
+                    "name": "🚶 Join Us",
+                    "value": "If you would like to attend Mass with other Raider Catholic members, feel free to join us at this time!",
+                    "inline": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "targets": [
+        {
+          "type": 1,
+          "url": "https://discord.com/api/webhooks/1480404418762379304/Rb-KdwBAGXzUz3hqvNlZ2tg6zBHhjguumu1V9pZJzKrUM4PbSqy58zoXh60J0JnLP8pQ"
+        }
+      ]
+    }
+  ]
+}

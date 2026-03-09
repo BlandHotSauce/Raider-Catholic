@@ -1,0 +1,62 @@
+{
+  "version": 8,
+  "backups": [
+    {
+      "name": "Rules Backup",
+      "messages": [
+        {
+          "data": {
+            "username": "Raider Catholic",
+            "avatar_url": "https://blogger.googleusercontent.com/img/a/AVvXsEh5aLR7rSIWaUZ-7yoqSqQZ6E3Uep4fHHCkTG982tv9QJjuF2Jk4Kr5CQGrk-zZzE5jJSY42crVbulokE_W9J-qWbDyW5eZlrQPJpiOzG1yvIskiVTMw4zCCOPkcf58zgYUVkf1lmQ_vespuMKHrNzPDyHjnGWkVfAoqDSN1weVtAj2S50HYQEzbTVf9hvo",
+            "embeds": [
+              {
+                "title": "Raider Catholic Discord Rules",
+                "description": "Welcome to the Raider Catholic Discord! This server exists to help students grow in faith, build friendships, and stay informed about Raider Catholic events. Please follow these guidelines to keep the community welcoming.",
+                "color": 3195673,
+                "footer": {
+                  "text": "\nIf you have questions or concerns, please contact a Raider Catholic officer or moderator.\nWe are glad you are here!"
+                },
+                "fields": [
+                  {
+                    "name": "1. Be Respectful and Charitable",
+                    "value": "Treat everyone with kindness and respect. Disagreements are okay, but personal attacks, insults, or hostility are not."
+                  },
+                  {
+                    "name": "2. Keep Conversations Appropriate",
+                    "value": "This is a Catholic student community. Avoid profanity, explicit content, or anything that would be inappropriate for a faith-based space."
+                  },
+                  {
+                    "name": "3. No Spam or Self-Promotion",
+                    "value": "Do not spam messages, advertisements, or unrelated promotions without approval from leadership."
+                  },
+                  {
+                    "name": "4. Respect Privacy",
+                    "value": "Do not share personal information, screenshots of conversations, or private messages without permission."
+                  },
+                  {
+                    "name": "5. Follow Discord and University Policies",
+                    "value": "All members must follow Discord’s Terms of Service and the policies of MSOE."
+                  },
+                  {
+                    "name": "6. Leadership Decisions",
+                    "value": "Raider Catholic leadership may step in if rules are not followed to maintain a healthy community."
+                  },
+                  {
+                    "name": "7. Remember Our Mission",
+                    "value": "This server exists to encourage fellowship, faith, and service. Let’s help each other grow closer to Christ and support one another."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "targets": [
+        {
+          "type": 1,
+          "url": "https://discord.com/api/webhooks/1480328752960372889/lfDZGNTsOc8n5B0k5fTQykSRevVW5DFXc51RkcndZpgJccf75eOk6vIcxcRCMR06F_7t"
+        }
+      ]
+    }
+  ]
+}
