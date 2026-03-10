@@ -4,12 +4,20 @@ const scrollButton = document.getElementById("scrollButton");
 const connectSection = document.getElementById("connect");
 const navLinks = document.querySelectorAll(".site-nav a");
 const revealElements = document.querySelectorAll(".reveal");
+const subscribeCalendarButton = document.getElementById("subscribeCalendarButton");
+const ambientSections = document.querySelectorAll(".hero, .calendar-ambient-section");
 
 const eventsList = document.getElementById("eventsList");
 const calendarStatus = document.getElementById("calendarStatus");
 
 const CALENDAR_API_URL =
   "https://raider-catholic-calendar-proxy.vercel.app/api/calendar?limit=6";
+
+const ICS_HTTPS_URL =
+  "https://outlook.office365.com/owa/calendar/3f27e5fcd8c54156a67a04e6c92a556d@msoe.edu/39fd891e541a4016a9fecf8ed36628826223923538709763827/calendar.ics";
+
+const ICS_WEBCAL_URL =
+  "webcal://outlook.office365.com/owa/calendar/3f27e5fcd8c54156a67a04e6c92a556d@msoe.edu/39fd891e541a4016a9fecf8ed36628826223923538709763827/calendar.ics";
 
 if (menuToggle && siteNav) {
   menuToggle.addEventListener("click", () => {
@@ -29,6 +37,34 @@ if (scrollButton && connectSection) {
   scrollButton.addEventListener("click", () => {
     connectSection.scrollIntoView({
       behavior: "smooth"
+    });
+  });
+}
+
+if (subscribeCalendarButton) {
+  const isMobileDevice =
+    /Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+    window.matchMedia("(pointer: coarse)").matches;
+
+  subscribeCalendarButton.href = isMobileDevice ? ICS_HTTPS_URL : ICS_WEBCAL_URL;
+}
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (!prefersReducedMotion) {
+  ambientSections.forEach((section) => {
+    section.addEventListener("mousemove", (event) => {
+      const rect = section.getBoundingClientRect();
+      const x = event.clientX - rect.left - rect.width / 2;
+      const y = event.clientY - rect.top - rect.height / 2;
+
+      section.style.setProperty("--pointer-x", `${x}px`);
+      section.style.setProperty("--pointer-y", `${y}px`);
+    });
+
+    section.addEventListener("mouseleave", () => {
+      section.style.setProperty("--pointer-x", "0px");
+      section.style.setProperty("--pointer-y", "0px");
     });
   });
 }
@@ -163,7 +199,7 @@ async function loadCalendarEvents() {
       return;
     }
 
-    calendarStatus.textContent = "Here are the next upcoming Raider Catholic events.";
+    calendarStatus.textContent = "Here are some upcoming Raider Catholic events.";
 
     events.forEach((event) => {
       eventsList.appendChild(buildEventCard(event));

@@ -32,6 +32,8 @@ body {
   background:
     radial-gradient(circle at top left, rgba(163, 15, 33, 0.08), transparent 28%),
     linear-gradient(135deg, #faf7f8 0%, #f5f6f8 45%, #edf2f8 100%);
+  --pointer-x: 0px;
+  --pointer-y: 0px;
 }
 
 img {
@@ -130,6 +132,131 @@ button {
   overflow: hidden;
 }
 
+.section-with-ornaments {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-ambient,
+.calendar-ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-ambient-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero-ambient-svg .ambient-arc {
+  fill: none;
+  stroke: url(#heroArcGradient);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 18 10 90 10;
+  opacity: 0.85;
+  animation: ambientTrace 18s linear infinite;
+}
+
+.hero-ambient-svg .ambient-arc-soft {
+  stroke-width: 1.5;
+  opacity: 0.5;
+  animation-duration: 24s;
+}
+
+.hero-ambient-svg .ambient-arc-calendar {
+  stroke: url(#calendarArcGradient);
+}
+
+.ambient-orbit {
+  transform-origin: center;
+  animation: ambientFloat 12s ease-in-out infinite;
+}
+
+.ambient-orbit-one {
+  transform: translate(
+    calc(var(--pointer-x) * 0.012),
+    calc(var(--pointer-y) * 0.012)
+  );
+}
+
+.ambient-orbit-two {
+  transform: translate(
+    calc(var(--pointer-x) * -0.01),
+    calc(var(--pointer-y) * 0.008)
+  );
+  animation-duration: 16s;
+}
+
+.ambient-ring-group {
+  transform-origin: 1230px 265px;
+  animation: ambientRotate 26s linear infinite;
+}
+
+.ambient-ring-group-calendar {
+  transform-origin: 1280px 170px;
+}
+
+.ambient-ring {
+  fill: none;
+  stroke: rgba(163, 15, 33, 0.16);
+  stroke-width: 1.6;
+}
+
+.ambient-ring-small {
+  stroke: rgba(212, 175, 55, 0.18);
+  stroke-dasharray: 7 10;
+}
+
+.ambient-cross {
+  stroke: rgba(163, 15, 33, 0.22);
+  stroke-width: 2;
+  stroke-linecap: round;
+  animation: ambientPulse 7s ease-in-out infinite;
+}
+
+.ambient-cross-one {
+  transform: translate(
+    calc(260px + var(--pointer-x) * -0.015),
+    calc(210px + var(--pointer-y) * -0.015)
+  );
+}
+
+.ambient-cross-two {
+  transform: translate(
+    calc(1380px + var(--pointer-x) * 0.01),
+    calc(210px + var(--pointer-y) * 0.01)
+  );
+  animation-delay: 1.4s;
+}
+
+.ambient-cross-calendar {
+  transform: translate(
+    calc(260px + var(--pointer-x) * -0.012),
+    calc(118px + var(--pointer-y) * -0.012)
+  );
+}
+
+.ambient-dot {
+  fill: rgba(212, 175, 55, 0.45);
+  animation: ambientPulse 6s ease-in-out infinite;
+}
+
+.ambient-dot-one {
+  animation-delay: 0.7s;
+}
+
+.ambient-dot-two {
+  animation-delay: 1.5s;
+}
+
+.ambient-dot-three {
+  animation-delay: 2.1s;
+}
+
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -138,12 +265,14 @@ button {
     radial-gradient(circle at 80% 20%, rgba(185, 185, 185, 0.18), transparent 24%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
   pointer-events: none;
+  z-index: 1;
 }
 
 .hero-content {
   position: relative;
   text-align: center;
   padding: 120px 0 90px;
+  z-index: 2;
 }
 
 .eyebrow {
@@ -239,6 +368,62 @@ button {
   padding: 95px 0;
 }
 
+.section-divider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 72px;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.section-divider path {
+  fill: none;
+  stroke: rgba(163, 15, 33, 0.18);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-dasharray: 10 12;
+  animation: ambientTrace 28s linear infinite;
+}
+
+.section-divider-hero {
+  height: 88px;
+  opacity: 0.65;
+}
+
+.section-corner-ornament {
+  position: absolute;
+  top: 30px;
+  right: 28px;
+  width: 88px;
+  height: 88px;
+  pointer-events: none;
+  opacity: 0.55;
+  z-index: 0;
+}
+
+.section-corner-left {
+  right: auto;
+  left: 28px;
+}
+
+.section-corner-ornament path,
+.section-corner-ornament circle {
+  fill: none;
+  stroke: rgba(163, 15, 33, 0.2);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  animation: ambientPulse 9s ease-in-out infinite;
+}
+
+.section-corner-ornament circle {
+  fill: rgba(212, 175, 55, 0.35);
+  stroke: none;
+}
+
 .section-heading {
   text-align: center;
   margin-bottom: 44px;
@@ -283,6 +468,20 @@ button {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.info-card:hover,
+.leader-card:hover,
+.mass-card:hover,
+.contact-card:hover,
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.12);
+  border-color: rgba(163, 15, 33, 0.12);
 }
 
 .info-card,
@@ -512,6 +711,12 @@ button {
 /* Calendar page */
 .calendar-top-section {
   padding-top: 56px;
+  padding-bottom: 86px;
+}
+
+.calendar-ambient-section .container {
+  position: relative;
+  z-index: 2;
 }
 
 .calendar-page-title {
@@ -530,32 +735,6 @@ button {
 
 .event-card {
   padding: 28px;
-}
-
-.calendar-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  margin-top: 32px;
-  flex-wrap: wrap;
-}
-
-.button-small {
-  min-height: 42px;
-  padding: 0 18px;
-  font-size: 0.95rem;
-}
-
-.calendar-text-link {
-  font-weight: 700;
-  color: var(--raider-red);
-  transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.calendar-text-link:hover {
-  color: var(--raider-red-dark);
-  transform: translateY(-1px);
 }
 
 .event-card-meta {
@@ -580,6 +759,34 @@ button {
 .event-description {
   margin-top: 14px;
   color: var(--navy-soft);
+}
+
+.calendar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+}
+
+.button-small {
+  min-height: 42px;
+  padding: 0 18px;
+  font-size: 0.95rem;
+}
+
+.calendar-text-link {
+  font-weight: 700;
+  color: var(--raider-red);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.calendar-text-link:hover {
+  color: var(--raider-red-dark);
+  transform: translateY(-1px);
 }
 
 .calendar-empty {
@@ -630,6 +837,49 @@ button {
   transition-delay: 0.24s;
 }
 
+.hero-ambient,
+.calendar-ambient,
+.section-divider,
+.section-corner-ornament {
+  will-change: transform, opacity;
+}
+
+@keyframes ambientTrace {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -240;
+  }
+}
+
+@keyframes ambientFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes ambientRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ambientPulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -641,10 +891,19 @@ button {
   .button,
   .scroll-indicator,
   .site-nav,
-  .map-chip {
+  .map-chip,
+  .hero-ambient-svg .ambient-arc,
+  .ambient-orbit,
+  .ambient-ring-group,
+  .ambient-cross,
+  .ambient-dot,
+  .section-divider path,
+  .section-corner-ornament path,
+  .section-corner-ornament circle {
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
+    animation: none !important;
   }
 }
 
@@ -736,6 +995,16 @@ button {
     padding: 100px 0 70px;
   }
 
+  .section-corner-ornament {
+    width: 72px;
+    height: 72px;
+    top: 22px;
+  }
+
+  .section-divider {
+    height: 56px;
+  }
+
   .brand-text {
     max-width: 210px;
     line-height: 1.2;
@@ -779,6 +1048,16 @@ button {
 
   .hero h1 {
     line-height: 1.02;
+  }
+
+  .hero-ambient-svg .ambient-ring,
+  .hero-ambient-svg .ambient-ring-small,
+  .section-corner-ornament {
+    opacity: 0.32;
+  }
+
+  .section-divider {
+    opacity: 0.35;
   }
 
   .hero-actions {
