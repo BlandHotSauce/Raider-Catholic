@@ -277,7 +277,8 @@ button {
 .info-card,
 .leader-card,
 .mass-card,
-.contact-card {
+.contact-card,
+.event-card {
   background: rgba(255, 255, 255, 0.88);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -292,7 +293,8 @@ button {
 .info-card h3,
 .leader-card h3,
 .mass-card h3,
-.contact-card h3 {
+.contact-card h3,
+.event-card h3 {
   margin: 0 0 14px;
   font-size: 1.35rem;
   font-weight: 800;
@@ -301,7 +303,8 @@ button {
 .info-card p,
 .leader-card p,
 .mass-card p,
-.contact-card p {
+.contact-card p,
+.event-card p {
   margin: 0;
   color: var(--navy-soft);
   line-height: 1.7;
@@ -349,6 +352,55 @@ button {
   color: var(--raider-red);
   font-size: 0.9rem;
   font-weight: 700;
+}
+
+.mass-location {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+  margin: 0 0 18px;
+}
+
+.mass-location-subgroup {
+  margin-top: -2px;
+}
+
+.mass-location-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.mass-location-icon {
+  flex-shrink: 0;
+  font-size: 0.95rem;
+}
+
+.mass-address {
+  color: var(--navy-soft);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.map-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(163, 15, 33, 0.08);
+  color: var(--raider-red);
+  font-size: 0.92rem;
+  font-weight: 700;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.map-chip:hover {
+  background: rgba(163, 15, 33, 0.14);
+  transform: translateY(-1px);
 }
 
 .mass-card h4 {
@@ -457,6 +509,85 @@ button {
   grid-column: 4 / span 2;
 }
 
+/* Calendar page */
+.calendar-top-section {
+  padding-top: 56px;
+}
+
+.calendar-page-title {
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.events-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.event-card {
+  padding: 28px;
+}
+
+.calendar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.button-small {
+  min-height: 42px;
+  padding: 0 18px;
+  font-size: 0.95rem;
+}
+
+.calendar-text-link {
+  font-weight: 700;
+  color: var(--raider-red);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.calendar-text-link:hover {
+  color: var(--raider-red-dark);
+  transform: translateY(-1px);
+}
+
+.event-card-meta {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.event-meta-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--navy-soft);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.event-meta-icon {
+  flex-shrink: 0;
+}
+
+.event-description {
+  margin-top: 14px;
+  color: var(--navy-soft);
+}
+
+.calendar-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 24px;
+}
+
 .site-footer {
   padding: 0 0 28px;
 }
@@ -509,7 +640,8 @@ button {
   .social-card,
   .button,
   .scroll-indicator,
-  .site-nav {
+  .site-nav,
+  .map-chip {
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
@@ -556,7 +688,8 @@ button {
 
 @media (max-width: 980px) {
   .about-grid,
-  .card-grid {
+  .card-grid,
+  .events-grid {
     grid-template-columns: 1fr;
   }
 
@@ -662,6 +795,11 @@ button {
     min-height: auto;
   }
 
+  .mass-location {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .section {
     padding: 76px 0;
   }
@@ -669,7 +807,17 @@ button {
   .info-card,
   .leader-card,
   .mass-card,
-  .contact-card {
+  .contact-card,
+  .event-card {
     padding: 24px;
+  }
+
+  .calendar-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .calendar-text-link {
+    text-align: center;
   }
 }

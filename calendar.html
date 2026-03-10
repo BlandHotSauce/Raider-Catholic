@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upcoming Events | MSOE Raider Catholic</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <meta property="og:title" content="Upcoming Events | MSOE Raider Catholic">
+  <meta property="og:description" content="See upcoming Raider Catholic events, meetings, and opportunities to get involved.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://raidercatholic.com/calendar.html">
+  <meta property="og:image" content="https://raidercatholic.com/assets/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="calendar-page">
+  <header class="site-header reveal">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <img src="assets/logo.png" alt="MSOE Raider Catholic logo" class="brand-logo" />
+        <span class="brand-text">MSOE Raider Catholic</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav">
+        <a href="index.html#about">About</a>
+        <a href="index.html#mass-times">Mass Times</a>
+        <a href="calendar.html">Events</a>
+        <a href="index.html#connect">Connect</a>
+        <a href="index.html#leadership">Leadership</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section calendar-top-section reveal">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-label">Raider Catholic Events</p>
+          <h1 class="calendar-page-title">Upcoming Events</h1>
+          <p class="section-subtitle" id="calendarStatus">
+            Loading upcoming events...
+          </p>
+        </div>
+
+        <div class="events-grid" id="eventsList"></div>
+
+        <div class="calendar-actions reveal reveal-delay-1">
+          <a
+            class="button button-primary button-small"
+            href="webcal://outlook.office365.com/owa/calendar/3f27e5fcd8c54156a67a04e6c92a556d@msoe.edu/39fd891e541a4016a9fecf8ed36628826223923538709763827/calendar.ics"
+          >
+            Subscribe to Calendar
+          </a>
+          <a
+            class="calendar-text-link"
+            href="https://outlook.office365.com/owa/calendar/3f27e5fcd8c54156a67a04e6c92a556d@msoe.edu/39fd891e541a4016a9fecf8ed36628826223923538709763827/calendar.ics"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download ICS
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer reveal">
+    <div class="container footer-content">
+      <p>&copy; 2026 MSOE Raider Catholic. This website is open source under the MIT License.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
