@@ -32,8 +32,6 @@ body {
   background:
     radial-gradient(circle at top left, rgba(163, 15, 33, 0.08), transparent 28%),
     linear-gradient(135deg, #faf7f8 0%, #f5f6f8 45%, #edf2f8 100%);
-  --pointer-x: 0px;
-  --pointer-y: 0px;
 }
 
 img {
@@ -65,17 +63,22 @@ button {
 }
 
 .nav-container {
+  width: 100%;
+  max-width: none;
   min-height: 84px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  padding: 0 32px;
+  margin: 0;
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 14px;
+  flex-shrink: 0;
 }
 
 .brand-logo {
@@ -88,18 +91,20 @@ button {
   font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .site-nav {
   display: flex;
   align-items: center;
   gap: 28px;
+  margin-left: auto;
 }
 
 .site-nav a {
   font-weight: 500;
   color: #5b667a;
-  transition: color 0.2s ease;
+  transition: color 0.22s ease;
 }
 
 .site-nav a:hover {
@@ -132,129 +137,11 @@ button {
   overflow: hidden;
 }
 
-.section-with-ornaments {
-  position: relative;
-  overflow: hidden;
-}
-
 .hero-ambient,
-.calendar-ambient {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-ambient-svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.hero-ambient-svg .ambient-arc {
-  fill: none;
-  stroke: url(#heroArcGradient);
-  stroke-width: 2.2;
-  stroke-linecap: round;
-  stroke-dasharray: 18 10 90 10;
-  opacity: 0.85;
-  animation: ambientTrace 18s linear infinite;
-}
-
-.hero-ambient-svg .ambient-arc-soft {
-  stroke-width: 1.5;
-  opacity: 0.5;
-  animation-duration: 24s;
-}
-
-.hero-ambient-svg .ambient-arc-calendar {
-  stroke: url(#calendarArcGradient);
-}
-
-.ambient-orbit {
-  transform-origin: center;
-  animation: ambientFloat 12s ease-in-out infinite;
-}
-
-.ambient-orbit-one {
-  transform: translate(
-    calc(var(--pointer-x) * 0.012),
-    calc(var(--pointer-y) * 0.012)
-  );
-}
-
-.ambient-orbit-two {
-  transform: translate(
-    calc(var(--pointer-x) * -0.01),
-    calc(var(--pointer-y) * 0.008)
-  );
-  animation-duration: 16s;
-}
-
-.ambient-ring-group {
-  transform-origin: 1230px 265px;
-  animation: ambientRotate 26s linear infinite;
-}
-
-.ambient-ring-group-calendar {
-  transform-origin: 1280px 170px;
-}
-
-.ambient-ring {
-  fill: none;
-  stroke: rgba(163, 15, 33, 0.16);
-  stroke-width: 1.6;
-}
-
-.ambient-ring-small {
-  stroke: rgba(212, 175, 55, 0.18);
-  stroke-dasharray: 7 10;
-}
-
-.ambient-cross {
-  stroke: rgba(163, 15, 33, 0.22);
-  stroke-width: 2;
-  stroke-linecap: round;
-  animation: ambientPulse 7s ease-in-out infinite;
-}
-
-.ambient-cross-one {
-  transform: translate(
-    calc(260px + var(--pointer-x) * -0.015),
-    calc(210px + var(--pointer-y) * -0.015)
-  );
-}
-
-.ambient-cross-two {
-  transform: translate(
-    calc(1380px + var(--pointer-x) * 0.01),
-    calc(210px + var(--pointer-y) * 0.01)
-  );
-  animation-delay: 1.4s;
-}
-
-.ambient-cross-calendar {
-  transform: translate(
-    calc(260px + var(--pointer-x) * -0.012),
-    calc(118px + var(--pointer-y) * -0.012)
-  );
-}
-
-.ambient-dot {
-  fill: rgba(212, 175, 55, 0.45);
-  animation: ambientPulse 6s ease-in-out infinite;
-}
-
-.ambient-dot-one {
-  animation-delay: 0.7s;
-}
-
-.ambient-dot-two {
-  animation-delay: 1.5s;
-}
-
-.ambient-dot-three {
-  animation-delay: 2.1s;
+.calendar-ambient,
+.section-divider,
+.section-corner-ornament {
+  display: none;
 }
 
 .hero-overlay {
@@ -319,11 +206,20 @@ button {
   padding: 0 24px;
   border-radius: 999px;
   font-weight: 700;
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.22s ease,
+    background 0.22s ease,
+    color 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
 }
 
 .button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+}
+
+.button:active {
+  transform: translateY(-1px);
 }
 
 .button-primary {
@@ -334,6 +230,7 @@ button {
 
 .button-primary:hover {
   background: var(--raider-red-dark);
+  box-shadow: 0 18px 30px rgba(163, 15, 33, 0.24);
 }
 
 .button-secondary {
@@ -344,6 +241,7 @@ button {
 
 .button-secondary:hover {
   background: var(--white);
+  box-shadow: 0 14px 24px rgba(15, 23, 42, 0.1);
 }
 
 .button-inline {
@@ -357,71 +255,16 @@ button {
   font-size: 2.8rem;
   color: var(--raider-red);
   cursor: pointer;
-  transition: transform 0.2s ease;
+  animation: scrollCue 2.2s ease-in-out infinite;
+  transition: color 0.22s ease, transform 0.22s ease;
 }
 
 .scroll-indicator:hover {
-  transform: translateY(4px);
+  color: var(--raider-red-dark);
 }
 
 .section {
   padding: 95px 0;
-}
-
-.section-divider {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  width: 100%;
-  height: 72px;
-  pointer-events: none;
-  opacity: 0.5;
-  z-index: 0;
-}
-
-.section-divider path {
-  fill: none;
-  stroke: rgba(163, 15, 33, 0.18);
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-dasharray: 10 12;
-  animation: ambientTrace 28s linear infinite;
-}
-
-.section-divider-hero {
-  height: 88px;
-  opacity: 0.65;
-}
-
-.section-corner-ornament {
-  position: absolute;
-  top: 30px;
-  right: 28px;
-  width: 88px;
-  height: 88px;
-  pointer-events: none;
-  opacity: 0.55;
-  z-index: 0;
-}
-
-.section-corner-left {
-  right: auto;
-  left: 28px;
-}
-
-.section-corner-ornament path,
-.section-corner-ornament circle {
-  fill: none;
-  stroke: rgba(163, 15, 33, 0.2);
-  stroke-width: 2.2;
-  stroke-linecap: round;
-  animation: ambientPulse 9s ease-in-out infinite;
-}
-
-.section-corner-ornament circle {
-  fill: rgba(212, 175, 55, 0.35);
-  stroke: none;
 }
 
 .section-heading {
@@ -468,20 +311,6 @@ button {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
-}
-
-.info-card:hover,
-.leader-card:hover,
-.mass-card:hover,
-.contact-card:hover,
-.event-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.12);
-  border-color: rgba(163, 15, 33, 0.12);
 }
 
 .info-card,
@@ -594,12 +423,13 @@ button {
   color: var(--raider-red);
   font-size: 0.92rem;
   font-weight: 700;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
 }
 
 .map-chip:hover {
   background: rgba(163, 15, 33, 0.14);
-  transform: translateY(-1px);
+  color: var(--raider-red-dark);
+  transform: translateX(3px);
 }
 
 .mass-card h4 {
@@ -630,7 +460,7 @@ button {
   gap: 18px;
   color: var(--white);
   box-shadow: var(--shadow);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
 .social-card:hover {
@@ -714,11 +544,6 @@ button {
   padding-bottom: 86px;
 }
 
-.calendar-ambient-section .container {
-  position: relative;
-  z-index: 2;
-}
-
 .calendar-page-title {
   margin: 0;
   font-size: clamp(2.4rem, 5vw, 4rem);
@@ -768,8 +593,6 @@ button {
   gap: 18px;
   margin-top: 32px;
   flex-wrap: wrap;
-  position: relative;
-  z-index: 2;
 }
 
 .button-small {
@@ -781,12 +604,12 @@ button {
 .calendar-text-link {
   font-weight: 700;
   color: var(--raider-red);
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: color 0.22s ease, transform 0.22s ease;
 }
 
 .calendar-text-link:hover {
   color: var(--raider-red-dark);
-  transform: translateY(-1px);
+  transform: translateX(3px);
 }
 
 .calendar-empty {
@@ -796,14 +619,18 @@ button {
 }
 
 .site-footer {
-  padding: 0 0 28px;
+  margin-top: 0;
+  width: 100%;
 }
 
 .footer-content {
+  width: 100%;
+  max-width: none;
   background: var(--navy);
   text-align: center;
   color: rgba(255, 255, 255, 0.82);
-  padding: 14px 16px;
+  padding: 18px 16px;
+  margin: 0;
 }
 
 .footer-content p {
@@ -815,8 +642,8 @@ button {
   opacity: 0;
   transform: translateY(24px);
   transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
+    opacity 0.65s ease,
+    transform 0.65s ease;
   will-change: opacity, transform;
 }
 
@@ -826,57 +653,25 @@ button {
 }
 
 .reveal-delay-1 {
-  transition-delay: 0.08s;
+  transition-delay: 0.06s;
 }
 
 .reveal-delay-2 {
-  transition-delay: 0.16s;
+  transition-delay: 0.12s;
 }
 
 .reveal-delay-3 {
-  transition-delay: 0.24s;
+  transition-delay: 0.18s;
 }
 
-.hero-ambient,
-.calendar-ambient,
-.section-divider,
-.section-corner-ornament {
-  will-change: transform, opacity;
-}
-
-@keyframes ambientTrace {
-  0% {
-    stroke-dashoffset: 0;
-  }
-  100% {
-    stroke-dashoffset: -240;
-  }
-}
-
-@keyframes ambientFloat {
+@keyframes scrollCue {
   0%, 100% {
-    transform: translateY(0px);
+    transform: translateY(0);
+    opacity: 0.75;
   }
   50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes ambientRotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes ambientPulse {
-  0%, 100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 0.9;
+    transform: translateY(10px);
+    opacity: 1;
   }
 }
 
@@ -892,14 +687,7 @@ button {
   .scroll-indicator,
   .site-nav,
   .map-chip,
-  .hero-ambient-svg .ambient-arc,
-  .ambient-orbit,
-  .ambient-ring-group,
-  .ambient-cross,
-  .ambient-dot,
-  .section-divider path,
-  .section-corner-ornament path,
-  .section-corner-ornament circle {
+  .calendar-text-link {
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
@@ -955,6 +743,10 @@ button {
   .brand-text {
     font-size: 1.2rem;
   }
+
+  .nav-container {
+    padding: 0 24px;
+  }
 }
 
 @media (max-width: 760px) {
@@ -962,10 +754,15 @@ button {
     display: flex;
   }
 
+  .nav-container {
+    min-height: 84px;
+    padding: 0 20px;
+  }
+
   .site-nav {
     position: absolute;
     top: 84px;
-    right: 4%;
+    right: 20px;
     width: min(260px, 92vw);
     background: rgba(255, 255, 255, 0.97);
     border: 1px solid var(--border);
@@ -977,8 +774,9 @@ button {
     gap: 14px;
     opacity: 0;
     pointer-events: none;
-    transform: translateY(-10px);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transform: translateY(-14px);
+    transition: opacity 0.24s ease, transform 0.24s ease;
+    margin-left: 0;
   }
 
   .site-nav.open {
@@ -995,19 +793,10 @@ button {
     padding: 100px 0 70px;
   }
 
-  .section-corner-ornament {
-    width: 72px;
-    height: 72px;
-    top: 22px;
-  }
-
-  .section-divider {
-    height: 56px;
-  }
-
   .brand-text {
     max-width: 210px;
     line-height: 1.2;
+    white-space: normal;
   }
 
   .mass-grid,
@@ -1039,6 +828,7 @@ button {
 @media (max-width: 560px) {
   .nav-container {
     min-height: 76px;
+    padding: 0 16px;
   }
 
   .brand-logo {
@@ -1048,16 +838,6 @@ button {
 
   .hero h1 {
     line-height: 1.02;
-  }
-
-  .hero-ambient-svg .ambient-ring,
-  .hero-ambient-svg .ambient-ring-small,
-  .section-corner-ornament {
-    opacity: 0.32;
-  }
-
-  .section-divider {
-    opacity: 0.35;
   }
 
   .hero-actions {

@@ -5,7 +5,6 @@ const connectSection = document.getElementById("connect");
 const navLinks = document.querySelectorAll(".site-nav a");
 const revealElements = document.querySelectorAll(".reveal");
 const subscribeCalendarButton = document.getElementById("subscribeCalendarButton");
-const ambientSections = document.querySelectorAll(".hero, .calendar-ambient-section");
 
 const eventsList = document.getElementById("eventsList");
 const calendarStatus = document.getElementById("calendarStatus");
@@ -49,26 +48,6 @@ if (subscribeCalendarButton) {
   subscribeCalendarButton.href = isMobileDevice ? ICS_HTTPS_URL : ICS_WEBCAL_URL;
 }
 
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-if (!prefersReducedMotion) {
-  ambientSections.forEach((section) => {
-    section.addEventListener("mousemove", (event) => {
-      const rect = section.getBoundingClientRect();
-      const x = event.clientX - rect.left - rect.width / 2;
-      const y = event.clientY - rect.top - rect.height / 2;
-
-      section.style.setProperty("--pointer-x", `${x}px`);
-      section.style.setProperty("--pointer-y", `${y}px`);
-    });
-
-    section.addEventListener("mouseleave", () => {
-      section.style.setProperty("--pointer-x", "0px");
-      section.style.setProperty("--pointer-y", "0px");
-    });
-  });
-}
-
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -89,7 +68,7 @@ revealElements.forEach((element) => {
 
 window.addEventListener("load", () => {
   const heroElements = document.querySelectorAll(
-    ".hero .reveal, .site-header.reveal, .hero.reveal, .calendar-hero.reveal"
+    ".hero .reveal, .site-header.reveal, .hero.reveal"
   );
 
   revealElements.forEach((element) => {
