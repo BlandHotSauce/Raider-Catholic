@@ -22,7 +22,7 @@
   />
   <link rel="stylesheet" href="style.css?v=3" />
 </head>
-<body class="calendar-page">
+<body>
   <header class="site-header reveal">
     <div class="container nav-container">
       <a href="index.html" class="brand">
@@ -30,7 +30,13 @@
         <span class="brand-text">MSOE Raider Catholic</span>
       </a>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Toggle navigation"
+        aria-controls="siteNav"
+        aria-expanded="false"
+      >
         <span></span>
         <span></span>
         <span></span>
@@ -47,47 +53,7 @@
   </header>
 
   <main>
-    <section class="section calendar-top-section reveal section-with-ornaments calendar-ambient-section">
-      <div class="calendar-ambient" aria-hidden="true">
-        <svg class="hero-ambient-svg" viewBox="0 0 1600 700" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="calendarArcGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="rgba(163,15,33,0)" />
-              <stop offset="35%" stop-color="rgba(163,15,33,0.28)" />
-              <stop offset="65%" stop-color="rgba(212,175,55,0.22)" />
-              <stop offset="100%" stop-color="rgba(185,185,185,0)" />
-            </linearGradient>
-          </defs>
-
-          <g class="ambient-orbit ambient-orbit-one">
-            <path
-              class="ambient-arc ambient-arc-calendar"
-              d="M 140 360 C 340 180, 650 120, 980 170 C 1260 214, 1425 152, 1510 60"
-              pathLength="100"
-            />
-          </g>
-
-          <g class="ambient-ring-group ambient-ring-group-calendar">
-            <circle class="ambient-ring" cx="1280" cy="170" r="118" />
-            <circle class="ambient-ring ambient-ring-small" cx="1280" cy="170" r="72" />
-          </g>
-
-          <g class="ambient-cross ambient-cross-one ambient-cross-calendar">
-            <line x1="0" y1="-16" x2="0" y2="16" />
-            <line x1="-12" y1="0" x2="12" y2="0" />
-          </g>
-
-          <circle class="ambient-dot ambient-dot-one" cx="360" cy="140" r="4" />
-          <circle class="ambient-dot ambient-dot-two" cx="1110" cy="110" r="4" />
-        </svg>
-      </div>
-
-      <svg class="section-corner-ornament" viewBox="0 0 160 160" aria-hidden="true">
-        <path d="M18 34 C52 34, 70 52, 70 86" />
-        <path d="M42 18 C86 18, 112 44, 112 88" />
-        <circle cx="112" cy="88" r="4" />
-      </svg>
-
+    <section class="section calendar-top-section reveal">
       <div class="container">
         <div class="section-heading reveal">
           <p class="section-label">Raider Catholic Events</p>
@@ -117,10 +83,6 @@
           </a>
         </div>
       </div>
-
-      <svg class="section-divider" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,72 C170,42 320,28 520,54 C730,82 900,90 1200,42" />
-      </svg>
     </section>
   </main>
 

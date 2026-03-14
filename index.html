@@ -25,12 +25,18 @@
 <body>
   <header class="site-header reveal">
     <div class="container nav-container">
-      <a href="#top" class="brand">
+      <a href="#" class="brand">
         <img src="assets/logo.png" alt="MSOE Raider Catholic logo" class="brand-logo" />
         <span class="brand-text">MSOE Raider Catholic</span>
       </a>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Toggle navigation"
+        aria-controls="siteNav"
+        aria-expanded="false"
+      >
         <span></span>
         <span></span>
         <span></span>
@@ -46,56 +52,8 @@
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero reveal section-with-ornaments">
-      <div class="hero-ambient" aria-hidden="true">
-        <svg class="hero-ambient-svg" viewBox="0 0 1600 900" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="heroArcGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="rgba(163,15,33,0)" />
-              <stop offset="35%" stop-color="rgba(163,15,33,0.35)" />
-              <stop offset="65%" stop-color="rgba(212,175,55,0.28)" />
-              <stop offset="100%" stop-color="rgba(185,185,185,0)" />
-            </linearGradient>
-          </defs>
-
-          <g class="ambient-orbit ambient-orbit-one">
-            <path
-              class="ambient-arc"
-              d="M 170 690 C 320 420, 640 300, 980 360 C 1250 410, 1420 270, 1490 120"
-              pathLength="100"
-            />
-          </g>
-
-          <g class="ambient-orbit ambient-orbit-two">
-            <path
-              class="ambient-arc ambient-arc-soft"
-              d="M 120 770 C 360 560, 720 500, 1020 560 C 1270 610, 1430 520, 1520 360"
-              pathLength="100"
-            />
-          </g>
-
-          <g class="ambient-ring-group">
-            <circle class="ambient-ring" cx="1230" cy="265" r="170" />
-            <circle class="ambient-ring ambient-ring-small" cx="1230" cy="265" r="108" />
-          </g>
-
-          <g class="ambient-cross ambient-cross-one">
-            <line x1="0" y1="-18" x2="0" y2="18" />
-            <line x1="-14" y1="0" x2="14" y2="0" />
-          </g>
-
-          <g class="ambient-cross ambient-cross-two">
-            <line x1="0" y1="-12" x2="0" y2="12" />
-            <line x1="-10" y1="0" x2="10" y2="0" />
-          </g>
-
-          <circle class="ambient-dot ambient-dot-one" cx="290" cy="255" r="5" />
-          <circle class="ambient-dot ambient-dot-two" cx="1095" cy="188" r="4" />
-          <circle class="ambient-dot ambient-dot-three" cx="1340" cy="475" r="6" />
-        </svg>
-      </div>
-
+  <main>
+    <section class="hero reveal">
       <div class="hero-overlay"></div>
 
       <div class="container hero-content">
@@ -115,19 +73,9 @@
           &#8964;
         </button>
       </div>
-
-      <svg class="section-divider section-divider-hero" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,64 C170,20 320,20 470,52 C660,92 810,98 1200,34" />
-      </svg>
     </section>
 
-    <section class="section about-section reveal section-with-ornaments" id="about">
-      <svg class="section-corner-ornament" viewBox="0 0 160 160" aria-hidden="true">
-        <path d="M18 34 C52 34, 70 52, 70 86" />
-        <path d="M42 18 C86 18, 112 44, 112 88" />
-        <circle cx="112" cy="88" r="4" />
-      </svg>
-
+    <section class="section reveal" id="about">
       <div class="container">
         <div class="section-heading reveal">
           <p class="section-label">About</p>
@@ -165,19 +113,9 @@
           </div>
         </div>
       </div>
-
-      <svg class="section-divider" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,76 C160,44 280,32 430,54 C610,82 760,94 1200,40" />
-      </svg>
     </section>
 
-    <section class="section mass-section reveal section-with-ornaments" id="mass-times">
-      <svg class="section-corner-ornament section-corner-left" viewBox="0 0 160 160" aria-hidden="true">
-        <path d="M142 34 C108 34, 90 52, 90 86" />
-        <path d="M118 18 C74 18, 48 44, 48 88" />
-        <circle cx="48" cy="88" r="4" />
-      </svg>
-
+    <section class="section mass-section reveal" id="mass-times">
       <div class="container">
         <div class="section-heading reveal">
           <p class="section-label">Mass Times</p>
@@ -400,19 +338,9 @@
           </div>
         </div>
       </div>
-
-      <svg class="section-divider" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,62 C200,30 330,22 520,54 C700,86 880,90 1200,50" />
-      </svg>
     </section>
 
-    <section class="section connect-section reveal section-with-ornaments" id="connect">
-      <svg class="section-corner-ornament" viewBox="0 0 160 160" aria-hidden="true">
-        <path d="M18 34 C52 34, 70 52, 70 86" />
-        <path d="M42 18 C86 18, 112 44, 112 88" />
-        <circle cx="112" cy="88" r="4" />
-      </svg>
-
+    <section class="section reveal" id="connect">
       <div class="container">
         <div class="section-heading reveal">
           <p class="section-label">Connect</p>
@@ -463,19 +391,9 @@
           </a>
         </div>
       </div>
-
-      <svg class="section-divider" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,74 C180,42 360,22 560,50 C760,78 910,88 1200,44" />
-      </svg>
     </section>
 
-    <section class="section leadership-section reveal section-with-ornaments" id="leadership">
-      <svg class="section-corner-ornament section-corner-left" viewBox="0 0 160 160" aria-hidden="true">
-        <path d="M142 34 C108 34, 90 52, 90 86" />
-        <path d="M118 18 C74 18, 48 44, 48 88" />
-        <circle cx="48" cy="88" r="4" />
-      </svg>
-
+    <section class="section reveal" id="leadership">
       <div class="container">
         <div class="section-heading reveal">
           <p class="section-label">Leadership</p>

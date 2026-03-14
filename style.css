@@ -137,13 +137,6 @@ button {
   overflow: hidden;
 }
 
-.hero-ambient,
-.calendar-ambient,
-.section-divider,
-.section-corner-ornament {
-  display: none;
-}
-
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -584,6 +577,7 @@ button {
 .event-description {
   margin-top: 14px;
   color: var(--navy-soft);
+  white-space: pre-line;
 }
 
 .calendar-actions {

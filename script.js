@@ -12,31 +12,51 @@ const calendarStatus = document.getElementById("calendarStatus");
 const CALENDAR_API_URL =
   "https://raider-catholic-calendar-proxy.vercel.app/api/calendar?limit=6";
 
-const ICS_HTTPS_URL =
-  "https://outlook.office365.com/owa/calendar/3f27e5fcd8c54156a67a04e6c92a556d@msoe.edu/39fd891e541a4016a9fecf8ed36628826223923538709763827/calendar.ics";
-
 const ICS_WEBCAL_URL =
   "webcal://outlook.office365.com/owa/calendar/3f27e5fcd8c54156a67a04e6c92a556d@msoe.edu/39fd891e541a4016a9fecf8ed36628826223923538709763827/calendar.ics";
 
 if (menuToggle && siteNav) {
+  const isMenuOpen = () => siteNav.classList.contains("open");
+  const setMenuOpen = (isOpen) => {
+    siteNav.classList.toggle("open", isOpen);
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  };
+
   menuToggle.addEventListener("click", () => {
-    siteNav.classList.toggle("open");
+    setMenuOpen(!isMenuOpen());
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!isMenuOpen() || !(event.target instanceof Node)) {
+      return;
+    }
+
+    if (siteNav.contains(event.target) || menuToggle.contains(event.target)) {
+      return;
+    }
+
+    setMenuOpen(false);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && isMenuOpen()) {
+      setMenuOpen(false);
+      menuToggle.focus();
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (isMenuOpen()) {
+        setMenuOpen(false);
+      }
+    });
   });
 }
 
-navLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    if (siteNav.classList.contains("open")) {
-      siteNav.classList.remove("open");
-    }
-  });
-});
-
 if (scrollButton && connectSection) {
   scrollButton.addEventListener("click", () => {
-    connectSection.scrollIntoView({
-      behavior: "smooth"
-    });
+    window.location.hash = connectSection.id;
   });
 }
 
@@ -45,7 +65,11 @@ if (subscribeCalendarButton) {
     /Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
     window.matchMedia("(pointer: coarse)").matches;
 
-  subscribeCalendarButton.href = isMobileDevice ? ICS_HTTPS_URL : ICS_WEBCAL_URL;
+  if (isMobileDevice) {
+    subscribeCalendarButton.hidden = true;
+  } else {
+    subscribeCalendarButton.href = ICS_WEBCAL_URL;
+  }
 }
 
 const observer = new IntersectionObserver(
@@ -67,23 +91,23 @@ revealElements.forEach((element) => {
 });
 
 window.addEventListener("load", () => {
-  const heroElements = document.querySelectorAll(
-    ".hero .reveal, .site-header.reveal, .hero.reveal"
-  );
-
   revealElements.forEach((element) => {
     const rect = element.getBoundingClientRect();
     if (rect.top < window.innerHeight * 0.9) {
       element.classList.add("is-visible");
     }
   });
-
-  heroElements.forEach((element) => {
-    element.classList.add("is-visible");
-  });
 });
 
+function isNonEmptyString(value) {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
 function formatEventDate(date) {
+  if (Number.isNaN(date.getTime())) {
+    return "Date to be announced";
+  }
+
   return new Intl.DateTimeFormat("en-US", {
     weekday: "short",
     month: "short",
@@ -93,6 +117,10 @@ function formatEventDate(date) {
 }
 
 function formatEventTimeRange(start, end) {
+  if (Number.isNaN(start.getTime())) {
+    return "Time to be announced";
+  }
+
   const dateOnly =
     start.getHours() === 0 &&
     start.getMinutes() === 0 &&
@@ -114,36 +142,55 @@ function formatEventTimeRange(start, end) {
   return `${timeFormatter.format(start)} - ${timeFormatter.format(end)}`;
 }
 
+function createEventMetaRow(icon, text) {
+  const row = document.createElement("div");
+  row.className = "event-meta-row";
+
+  const iconElement = document.createElement("span");
+  iconElement.className = "event-meta-icon";
+  iconElement.setAttribute("aria-hidden", "true");
+  iconElement.textContent = icon;
+
+  const textElement = document.createElement("span");
+  textElement.textContent = text;
+
+  row.append(iconElement, textElement);
+
+  return row;
+}
+
 function buildEventCard(event) {
   const eventCard = document.createElement("article");
   eventCard.className = "event-card reveal is-visible";
 
   const start = new Date(event.start);
   const end = event.end ? new Date(event.end) : null;
+  const titleText = isNonEmptyString(event.summary)
+    ? event.summary.trim()
+    : "Untitled event";
+  const locationText = isNonEmptyString(event.location)
+    ? event.location.trim()
+    : "Location to be announced";
 
-  const descriptionHtml =
-    event.description && event.description.trim().length <= 220
-      ? `<p class="event-description">${event.description.replace(/\n/g, "<br>")}</p>`
-      : "";
+  const title = document.createElement("h3");
+  title.textContent = titleText;
 
-  eventCard.innerHTML = `
-    <h3>${event.summary}</h3>
-    <div class="event-card-meta">
-      <div class="event-meta-row">
-        <span class="event-meta-icon">📅</span>
-        <span>${formatEventDate(start)}</span>
-      </div>
-      <div class="event-meta-row">
-        <span class="event-meta-icon">🕒</span>
-        <span>${formatEventTimeRange(start, end)}</span>
-      </div>
-      <div class="event-meta-row">
-        <span class="event-meta-icon">📍</span>
-        <span>${event.location ? event.location : "Location to be announced"}</span>
-      </div>
-    </div>
-    ${descriptionHtml}
-  `;
+  const meta = document.createElement("div");
+  meta.className = "event-card-meta";
+  meta.append(
+    createEventMetaRow("\u{1F4C5}", formatEventDate(start)),
+    createEventMetaRow("\u{1F552}", formatEventTimeRange(start, end)),
+    createEventMetaRow("\u{1F4CD}", locationText)
+  );
+
+  eventCard.append(title, meta);
+
+  if (isNonEmptyString(event.description) && event.description.trim().length <= 220) {
+    const description = document.createElement("p");
+    description.className = "event-description";
+    description.textContent = event.description.trim();
+    eventCard.append(description);
+  }
 
   return eventCard;
 }
