@@ -1,7 +1,11 @@
 const menuToggle = document.getElementById("menuToggle");
 const siteNav = document.getElementById("siteNav");
 const scrollButton = document.getElementById("scrollButton");
-const connectSection = document.getElementById("connect");
+const defaultScrollTarget = document.getElementById("connect");
+const scrollTargetId = scrollButton ? scrollButton.dataset.scrollTarget : "";
+const scrollTarget = scrollTargetId
+  ? document.getElementById(scrollTargetId) || defaultScrollTarget
+  : defaultScrollTarget;
 const navLinks = document.querySelectorAll(".site-nav a");
 const revealElements = document.querySelectorAll(".reveal");
 const subscribeCalendarButton = document.getElementById("subscribeCalendarButton");
@@ -54,9 +58,9 @@ if (menuToggle && siteNav) {
   });
 }
 
-if (scrollButton && connectSection) {
+if (scrollButton && scrollTarget) {
   scrollButton.addEventListener("click", () => {
-    window.location.hash = connectSection.id;
+    window.location.hash = scrollTarget.id;
   });
 }
 
