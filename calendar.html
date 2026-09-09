@@ -20,7 +20,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
   <header class="site-header reveal">
@@ -45,17 +45,9 @@
       <nav class="site-nav" id="siteNav">
         <a href="index.html#about">About</a>
         <a href="index.html#mass-times">Mass Times</a>
-        <a href="calendar.html">Events</a>
+        <a href="calendar.html" class="nav-events-link" aria-current="page">Events</a>
         <a href="index.html#connect">Connect</a>
         <a href="index.html#leadership">Leadership</a>
-        <a
-          class="nav-signup-link"
-          href="https://docs.google.com/forms/d/e/1FAIpQLSfFIb83_XCL5WrTyKHX35n0NBtv4AnkqXI6pswNWS89kE7G2A/viewform?usp=header"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Join Raider Catholic
-        </a>
       </nav>
     </div>
   </header>
@@ -64,9 +56,9 @@
     <section class="section calendar-top-section reveal">
       <div class="container">
         <div class="section-heading reveal">
-          <p class="section-label">Raider Catholic Events</p>
-          <h1 class="calendar-page-title">Upcoming Events</h1>
-          <p class="section-subtitle" id="calendarStatus">
+          <p class="section-label">The Raider Catholic Calendar</p>
+          <h1 class="calendar-page-title">Find where you belong this week.</h1>
+          <p class="section-subtitle" id="calendarStatus" aria-live="polite">
             Loading upcoming events...
           </p>
         </div>
@@ -100,6 +92,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>

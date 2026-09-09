@@ -1,7 +1,6 @@
 const menuToggle = document.getElementById("menuToggle");
 const siteNav = document.getElementById("siteNav");
 const scrollButton = document.getElementById("scrollButton");
-const connectSection = document.getElementById("connect");
 const navLinks = document.querySelectorAll(".site-nav a");
 const revealElements = document.querySelectorAll(".reveal");
 const subscribeCalendarButton = document.getElementById("subscribeCalendarButton");
@@ -54,9 +53,13 @@ if (menuToggle && siteNav) {
   });
 }
 
-if (scrollButton && connectSection) {
+const scrollTarget = scrollButton?.dataset.scrollTarget
+  ? document.getElementById(scrollButton.dataset.scrollTarget)
+  : null;
+
+if (scrollButton && scrollTarget) {
   scrollButton.addEventListener("click", () => {
-    window.location.hash = connectSection.id;
+    window.location.hash = scrollTarget.id;
   });
 }
 
@@ -225,9 +228,16 @@ async function loadCalendarEvents() {
       return;
     }
 
-    calendarStatus.textContent = "Here are some upcoming Raider Catholic events.";
+    calendarStatus.textContent =
+      calendarStatus.dataset.loadedMessage ||
+      "Here are some upcoming Raider Catholic events.";
 
-    events.forEach((event) => {
+    const requestedLimit = Number.parseInt(eventsList.dataset.eventLimit || "", 10);
+    const visibleEvents = Number.isInteger(requestedLimit)
+      ? events.slice(0, requestedLimit)
+      : events;
+
+    visibleEvents.forEach((event) => {
       eventsList.appendChild(buildEventCard(event));
     });
   } catch (error) {
